@@ -2,6 +2,8 @@
   <h1>
     {{ title }}
   </h1>
+
+  <!-- Shown if you haven't won or lost -->
   <div *ngIf="!loseCondition(); else lose">
     <div *ngIf="!winCondition(); else win">
       <form (ngSubmit)="onGuess(guessLetter)" autocomplete="off">
@@ -16,18 +18,25 @@
           >
         </label>
         <button> Guess </button>
+        <!-- Will tell you if you entered something incorrectly -->
         <p class="warning"> {{ error }} </p>
       </form>
     </div>
   </div>
+
+  <!-- Shown if you lose -->
   <ng-template #lose>
     <p class="warning"> You lose! </p>
     <button (click)="reset()"> Play Again </button>
   </ng-template>
+
+  <!-- Shown if you win -->
   <ng-template #win>
     <p class="reward"> You win! </p>
     <button (click)="reset()"> Play Again </button>
   </ng-template>
+
+  <!-- Blank lines and letters for the answer -->
   <div class="card center">
     <h3> Guess the Word: </h3>
     <app-word
@@ -37,6 +46,8 @@
     >
     </app-word>
   </div>
+
+  <!-- Stick figure drawing -->
   <div class="card flex-container center">
     <img class="figure"[src]=figureSrc>
     <div class="incorrect">

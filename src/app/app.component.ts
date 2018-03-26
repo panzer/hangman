@@ -1,7 +1,5 @@
 import { Component, OnInit, enableProdMode } from "@angular/core";
-import { Http, Response } from "@angular/http";
 import words from "../assets/words-clean";
-//enableProdMode();
 
 @Component({
   selector: "app-root",
@@ -12,13 +10,13 @@ export class AppComponent implements OnInit {
   title = "The Hangman Challenge";
 
   // Initial values are found in reset()
-  guessLetter;
-  incorrectLetters;
-  word;
-  letters;
-  maxIncorrect;
-  error;
-  figureSrc;
+  guessLetter; // Most recent guess
+  incorrectLetters; // Guessed letters that are incorrect
+  word; // The correct word (answer)
+  letters; // Correctly guessed letters
+  maxIncorrect = 10; // Maximum incorrect guesses allowed before loss
+  error; // Error message to be displayed for input
+  figureSrc; // Drawing (stick figure) url
 
   ngOnInit() {
     this.reset();
@@ -35,12 +33,12 @@ export class AppComponent implements OnInit {
     }
     // This letter was guessed and it was incorrect
     if (this.incorrectLetters.includes(guessLetter)) {
-      this.error = `You've already guessed ${guessLetter}`;
+      this.error = `You've already guessed ${guessLetter.toUpperCase()}`;
       return;
     }
     // This letter was guessed and it was incorrect
     if (this.letters.includes(guessLetter)) {
-      this.error = `You've already guessed ${guessLetter}`;
+      this.error = `You've already guessed ${guessLetter.toUpperCase()}`;
       return;
     }
 
@@ -52,12 +50,14 @@ export class AppComponent implements OnInit {
       this.incorrectLetters.push(guessLetter);
     }
 
+    // Update drawing (stick figure)
     this.updateFigureSrc();
-    console.log(this.winCondition());
 
     // Clear guess input and error
     this.guessLetter = "";
     this.error = "";
+
+    // Focus on input (makes it easier to put another letter)
     let input = document.getElementById("input");
     input.focus();
   };
@@ -67,7 +67,6 @@ export class AppComponent implements OnInit {
     this.incorrectLetters = [];
     this.word = this.randomWord();
     this.letters = [];
-    this.maxIncorrect = 10;
     this.error = "";
     this.figureSrc = "./assets/Drawing-0.png";
   };
@@ -84,6 +83,8 @@ export class AppComponent implements OnInit {
   };
 
   winCondition = () => {
+    // For each character of the answer, if it's not in "guessed letters"
+    //  then we haven't won
     for (let c of this.word) {
       if (!this.letters.includes(c)) {
         return false;
