@@ -4,7 +4,7 @@
 
 # Bonus! Puts each line into a string in an array (JSON)
 
-with open('words-clean.json', 'w') as clean:
+with open('words-clean.txt', 'w') as clean:
     with open('words.txt', 'r') as words:
         clean.write('[\n')
         for line in words:
