@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
     this.letters = [];
     this.maxIncorrect = 10;
     this.error = "";
-    this.figureSrc = "../assets/Drawing-0.png";
+    this.figureSrc = "./assets/Drawing-0.png";
   };
 
   randomWord = () => {
@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
 
   updateFigureSrc = () => {
     let n = this.incorrectLetters.length;
-    this.figureSrc = `../assets/Drawing-${n}.png`;
+    this.figureSrc = `./assets/Drawing-${n}.png`;
   };
 
   winCondition = () => {
