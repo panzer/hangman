@@ -1,0 +1,15 @@
+.letters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  text-transform: uppercase;
+  margin: 10px auto;
+  border: 1px dashed black;
+  height: 100px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.letter {
+  margin: 5px 10px;
+}

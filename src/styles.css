@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600");
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #fafafa;
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0px 0px 2px 0px #bbb;
+  padding: 10px;
+  margin: 10px 0px;
+  max-width: 500px;
+}
+
+.warning {
+  color: red;
+}
+
+.reward {
+  color: green;
+  font-size: 24px;
+  font-family: "Pacifico", cursive;
+}
+
+.center {
+  margin: 0px auto;
+}

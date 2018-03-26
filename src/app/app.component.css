@@ -1,0 +1,55 @@
+.wrapper {
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "figure incorrect";
+}
+
+.incorrect {
+  grid-area: incorrect;
+}
+
+.figure {
+  grid-area: figure;
+  max-width: 300px;
+}
+.nowrap {
+  white-space: nowrap;
+}
+
+input[type="text"] {
+  font-size: 14px;
+  padding: 5px;
+  border: 2px solid black;
+}
+
+button {
+  color: black;
+  font-weight: 600;
+  background-color: #fdd835;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 1px;
+  border: none;
+  text-transform: uppercase;
+  box-shadow: 0px 0px 2px 0px #bbb;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #feda38;
+  box-shadow: 0px 1px 3px 0px #999;
+}
+
+button:focus {
+  outline: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

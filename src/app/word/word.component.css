@@ -1,0 +1,20 @@
+.word {
+  display: flex;
+  text-transform: uppercase;
+  margin: 10px;
+  padding: 10px;
+  justify-content: center;
+  height: 30px;
+}
+
+.field {
+  font-size: 18px;
+  font-weight: 600;
+  width: 28px;
+  margin: 2px;
+  border-bottom: 2px solid black;
+}
+
+.hint {
+  color: blue;
+}

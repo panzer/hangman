@@ -1,0 +1,16 @@
+<div class="word">
+  <!-- For each letter in the answer -->
+  <div *ngFor="let letter of answer.split('')" class="field">
+    <!-- Show it if it has been guessed -->
+    <div *ngIf="letters.includes(letter); else hint">
+      <span>{{ letter }}</span>
+    </div>
+    <!-- Otherwise, -->
+    <ng-template #hint>
+      <!-- Show it as a hint if we should show the full answer (game over) -->
+      <div *ngIf='showAnswer'>
+        <span class="hint">{{ letter }}</span>
+      </div>
+    </ng-template>
+  </div>
+</div>
