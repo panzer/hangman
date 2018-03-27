@@ -1,5 +1,5 @@
 import { Component, OnInit, enableProdMode } from "@angular/core";
-import words from "../assets/words-clean";
+import { WordService } from "./word.service";
 
 @Component({
   selector: "app-root",
@@ -18,8 +18,11 @@ export class AppComponent implements OnInit {
   error; // Error message to be displayed for input
   figureSrc; // Drawing (stick figure) url
 
+  constructor(private wordService: WordService) {}
+
   ngOnInit() {
     this.reset();
+    this.getRandomWord();
   }
 
   onGuess = guessLetter => {
@@ -72,9 +75,14 @@ export class AppComponent implements OnInit {
   };
 
   randomWord = () => {
-    let len = words.length;
-    let i = Math.floor(Math.random() * len);
-    return words[i];
+    // let len = words.length;
+    // let i = Math.floor(Math.random() * len);
+    // return words[i];
+    return "programmer";
+  };
+
+  getRandomWord = () => {
+    this.wordService.getWord().subscribe(res => console.log(res.json()));
   };
 
   updateFigureSrc = () => {
