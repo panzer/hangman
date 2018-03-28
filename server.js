@@ -4,6 +4,8 @@ const path = require("path");
 const http = require("http");
 const bodyParser = require("body-parser");
 
+process.env.PWD = process.cwd();
+
 // Get our API routes
 const api = require("./server/api");
 
@@ -14,14 +16,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(process.env.PWD, "dist")));
 
 // Set our api routes
 app.use("/api", api);
 
 // Catch all other routes and return the index file
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/index.html"));
+  res.sendFile(path.join(process.env.PWD, "dist/index.html"));
 });
 
 /**
