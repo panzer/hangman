@@ -8,7 +8,7 @@ Based on the classic paper and pencil [Hangman game](https://en.wikipedia.org/wi
 
 ## Live Preview
 
-https://panzer.github.io/hangman/ 
+https://secure-stream-15586.herokuapp.com/
 
 ## Development server
 
