@@ -1,6 +1,8 @@
 import { Component, OnInit, enableProdMode } from "@angular/core";
 import { WordService } from "./word.service";
 
+enableProdMode();
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",

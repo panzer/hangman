@@ -49,6 +49,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_7" /* enableProdMode */])();
 var AppComponent = /** @class */ (function () {
     function AppComponent(wordService) {
         var _this = this;
@@ -98,7 +99,6 @@ var AppComponent = /** @class */ (function () {
             _this.getRandomWord(function (r) {
                 _this.word = r.json();
                 _this.loading = false;
-                console.log("hello!");
             });
             _this.letters = [];
             _this.error = "";
