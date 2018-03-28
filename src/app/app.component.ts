@@ -1,5 +1,5 @@
 import { Component, OnInit, enableProdMode } from "@angular/core";
-import words from "../assets/words-clean";
+import { WordService } from "./word.service";
 
 @Component({
   selector: "app-root",
@@ -17,6 +17,9 @@ export class AppComponent implements OnInit {
   maxIncorrect = 10; // Maximum incorrect guesses allowed before loss
   error; // Error message to be displayed for input
   figureSrc; // Drawing (stick figure) url
+  loading = true;
+
+  constructor(private wordService: WordService) {}
 
   ngOnInit() {
     this.reset();
@@ -65,16 +68,18 @@ export class AppComponent implements OnInit {
   reset = () => {
     this.guessLetter = "";
     this.incorrectLetters = [];
-    this.word = this.randomWord();
+    this.loading = true;
+    this.getRandomWord(r => {
+      this.word = r.json();
+      this.loading = false;
+    });
     this.letters = [];
     this.error = "";
     this.figureSrc = "./assets/Drawing-0.png";
   };
 
-  randomWord = () => {
-    let len = words.length;
-    let i = Math.floor(Math.random() * len);
-    return words[i];
+  getRandomWord = callback => {
+    this.wordService.getWord().subscribe(r => callback(r));
   };
 
   updateFigureSrc = () => {

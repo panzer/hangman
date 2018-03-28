@@ -1,63 +1,70 @@
-<div class="wrapper">
-  <h1>
-    {{ title }}
-  </h1>
+<div>
+  <div class="wrapper" *ngIf="!loading; else load">
+    <h1>
+      {{ title }}
+    </h1>
 
-  <!-- Shown if you haven't won or lost -->
-  <div *ngIf="!loseCondition(); else lose">
-    <div *ngIf="!winCondition(); else win">
-      <form (ngSubmit)="onGuess(guessLetter)" autocomplete="off">
-        <label>
-          <input
-            id="input"
-            type="text"
-            [(ngModel)]="guessLetter"
-            placeholder="letter"
-            name="letter"
-            autofocus
-          >
-        </label>
-        <button> Guess </button>
-        <!-- Will tell you if you entered something incorrectly -->
-        <p class="warning"> {{ error }} </p>
-      </form>
+    <!-- Shown if you haven't won or lost -->
+    <div *ngIf="!loseCondition(); else lose">
+      <div *ngIf="!winCondition(); else win">
+        <form (ngSubmit)="onGuess(guessLetter)" autocomplete="off">
+          <label>
+            <input
+              id="input"
+              type="text"
+              [(ngModel)]="guessLetter"
+              placeholder="letter"
+              name="letter"
+              autofocus
+            >
+          </label>
+          <button> Guess </button>
+          <!-- Will tell you if you entered something incorrectly -->
+          <p class="warning"> {{ error }} </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Shown if you lose -->
+    <ng-template #lose>
+      <p class="warning"> You lose! </p>
+      <button (click)="reset()"> Play Again </button>
+    </ng-template>
+
+    <!-- Shown if you win -->
+    <ng-template #win>
+      <p class="reward"> You win! </p>
+      <button (click)="reset()"> Play Again </button>
+    </ng-template>
+
+    <!-- Blank lines and letters for the answer -->
+    <div class="card center">
+      <h3> Guess the Word: </h3>
+      <app-word
+        [letters]=letters
+        [answer]=word
+        [showAnswer]=loseCondition()
+      >
+      </app-word>
+    </div>
+
+    <!-- Stick figure drawing -->
+    <div class="card flex-container center">
+      <img class="figure"[src]=figureSrc>
+      <div class="incorrect">
+        <h3>
+          Incorrect Letters:
+          <span class="nowrap">
+            {{ incorrectLetters.length }} / {{ maxIncorrect }}
+          </span>
+        </h3>
+        <app-incorrects [letters]=incorrectLetters></app-incorrects>
+      </div>
     </div>
   </div>
 
-  <!-- Shown if you lose -->
-  <ng-template #lose>
-    <p class="warning"> You lose! </p>
-    <button (click)="reset()"> Play Again </button>
+  <ng-template #load>
+    <h2> Loading... </h2>
   </ng-template>
 
-  <!-- Shown if you win -->
-  <ng-template #win>
-    <p class="reward"> You win! </p>
-    <button (click)="reset()"> Play Again </button>
-  </ng-template>
-
-  <!-- Blank lines and letters for the answer -->
-  <div class="card center">
-    <h3> Guess the Word: </h3>
-    <app-word
-      [letters]=letters
-      [answer]=word
-      [showAnswer]=loseCondition()
-    >
-    </app-word>
-  </div>
-
-  <!-- Stick figure drawing -->
-  <div class="card flex-container center">
-    <img class="figure"[src]=figureSrc>
-    <div class="incorrect">
-      <h3>
-        Incorrect Letters:
-        <span class="nowrap">
-          {{ incorrectLetters.length }} / {{ maxIncorrect }}
-        </span>
-      </h3>
-      <app-incorrects [letters]=incorrectLetters></app-incorrects>
-    </div>
-  </div>
 </div>
