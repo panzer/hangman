@@ -1,27 +1,18 @@
 const express = require("express");
 const router = express.Router();
-
-// declare axios for making http requests
-const axios = require("axios");
-const API = "https://jsonplaceholder.typicode.com";
+const words = require("./words-clean");
 
 /* GET api listing. */
 router.get("/", (req, res) => {
   res.send("api works");
 });
 
-// Get all posts
 router.get("/getWord", (req, res) => {
-  // Get posts from the mock api
+  // Get words from the mock api
   // This should ideally be replaced with a service that connects to MongoDB
-  axios
-    .get(`${API}/posts`)
-    .then(posts => {
-      res.status(200).json(posts.data);
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    });
+  let len = words.length;
+  let i = Math.floor(Math.random() * len);
+  res.status(200).json(words[i]);
 });
 
 module.exports = router;

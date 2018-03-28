@@ -1,4 +1,4 @@
-export default [
+[
   "accept",
   "accident",
   "active",
@@ -223,4 +223,4 @@ export default [
   "worry",
   "worse",
   "youth"
-];
+]
