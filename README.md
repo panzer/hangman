@@ -10,9 +10,6 @@ Based on the classic paper and pencil [Hangman game](https://en.wikipedia.org/wi
 
 https://secure-stream-15586.herokuapp.com/
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
